@@ -7,10 +7,12 @@ class FeaturedItem extends StatefulWidget {
       {super.key,
       required this.title,
       required this.type,
-      required this.price});
+      required this.price,
+      required this.imageUrl});
   final String title;
   final String type;
   final int price;
+  final String imageUrl;
 
   @override
   State<FeaturedItem> createState() => _FeaturedItemState();
@@ -44,7 +46,7 @@ class _FeaturedItemState extends State<FeaturedItem> {
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Image.network(
-                    'https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg',
+                    widget.imageUrl,
                     fit: BoxFit.cover,
                   ),
                 ),
