@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:bookingapp/widgets/featured_item.dart';
+import 'package:bookingapp/widgets/recommended_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +20,47 @@ class HomePage extends StatelessWidget {
     "Steung Treng"
   ];
 
-  List featuredItems = [
-    {"title": "Classic room", "type": "Queen Room", "price": 180},
-    {"title": "Twin room", "type": "Double Room", "price": 190},
-    {"title": "Luxury room", "type": "Queen Room", "price": 200},
-    {"title": "King room", "type": "Single Room", "price": 240},
-    {"title": "Queen room", "type": "Single Room", "price": 240},
+  List roomItems = [
+    {
+      "title": "Classic room",
+      "type": "Queen Room",
+      "price": 180,
+      "rate": 4.0,
+      "imageUrl":
+          "https://noithattrevietnam.com/uploaded/2019/12/1-thiet-ke-phong-ngu-khach-san%20%281%29.jpg"
+    },
+    {
+      "title": "Twin room",
+      "type": "Double Room",
+      "price": 190,
+      "rate": 4.1,
+      "imageUrl":
+          "https://anviethouse.vn/wp-content/uploads/2021/12/Thiet-ke-phong-deluxe-khach-san-1-2.jpg"
+    },
+    {
+      "title": "Luxury room",
+      "type": "Queen Room",
+      "price": 200,
+      "rate": 4.2,
+      "imageUrl":
+          "https://noithattrevietnam.com/uploaded/2019/12/3-thiet-ke-phong-ngu-khach-san-mini%20%285%29.jpg"
+    },
+    {
+      "title": "King room",
+      "type": "Single Room",
+      "price": 240,
+      "rate": 4.3,
+      "imageUrl":
+          "https://anviethouse.vn/wp-content/uploads/2021/12/Thiet-ke-phong-deluxe-khach-san-1-2.jpg"
+    },
+    {
+      "title": "Queen room",
+      "type": "Single Room",
+      "price": 240,
+      "rate": 4.5,
+      "imageUrl":
+          "https://queenannnhatrang.com//uploads/Roooms/slide-cover-premier-double%20(1).jpg"
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -90,26 +128,26 @@ class HomePage extends StatelessWidget {
                 style: TextStyle(
                     color: Colors.grey.shade500, fontWeight: FontWeight.w500),
               ),
-              Text(
+              const Text(
                 "The Best Hotel Rooms",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
               ),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 8),
+                margin: const EdgeInsets.symmetric(vertical: 8),
                 height: 48,
                 width: double.infinity,
                 child: ListView(
                   shrinkWrap: true,
-                  padding: EdgeInsets.only(right: 2, bottom: 2, top: 2),
+                  padding: const EdgeInsets.only(right: 2, bottom: 2, top: 2),
                   scrollDirection: Axis.horizontal,
-                  physics: ClampingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   children: locations
                       .map((e) => Container(
                             child: Text(e),
                             margin: e != locations[locations.length - 1]
-                                ? EdgeInsets.only(right: 10)
-                                : EdgeInsets.only(right: 0),
-                            padding: EdgeInsets.all(12),
+                                ? const EdgeInsets.only(right: 10)
+                                : const EdgeInsets.only(right: 0),
+                            padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 border: Border.all(color: Colors.grey.shade200),
@@ -119,7 +157,7 @@ class HomePage extends StatelessWidget {
                                         Colors.grey.shade400.withOpacity(0.55),
                                     spreadRadius: .5,
                                     blurRadius: .5,
-                                    offset: Offset(
+                                    offset: const Offset(
                                         1, 1), // changes position of shadow
                                   ),
                                 ],
@@ -128,30 +166,71 @@ class HomePage extends StatelessWidget {
                       .toList(),
                 ),
               ),
-              Text(
+              const Text(
                 "Featured",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
               ),
               Container(
                 height: 8,
               ),
+              CarouselSlider(
+                items: roomItems
+                    .map((e) => FeaturedItem(
+                          title: e["title"],
+                          type: e["type"],
+                          price: e["price"],
+                          imageUrl: e["imageUrl"],
+                        ))
+                    .toList(),
+                options: CarouselOptions(
+                    height: 260,
+                    aspectRatio: 16 / 9,
+                    viewportFraction: 0.8,
+                    enlargeCenterPage: true,
+                    clipBehavior: Clip.none),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  const Text(
+                    "Recommended",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                  ),
+                  const Spacer(),
+                  Text(
+                    "See all",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.grey.shade600),
+                  ),
+                ],
+              ),
               Container(
-                child: CarouselSlider(
-                  items: featuredItems
-                      .map((e) => FeaturedItem(
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                height: 96,
+                width: double.infinity,
+                child: ListView(
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.only(bottom: 4),
+                  scrollDirection: Axis.horizontal,
+                  physics: const ClampingScrollPhysics(),
+                  children: roomItems
+                      .map((e) => Container(
+                          margin: e != locations[locations.length - 1]
+                              ? const EdgeInsets.only(right: 12)
+                              : const EdgeInsets.only(right: 0),
+                          child: RecommendedItem(
                             title: e["title"],
                             type: e["type"],
                             price: e["price"],
-                          ))
+                            rate: e["rate"],
+                            imageUrl: e["imageUrl"],
+                          )))
                       .toList(),
-                  options: CarouselOptions(
-                      height: 260,
-                      aspectRatio: 16 / 9,
-                      viewportFraction: 0.8,
-                      enlargeCenterPage: true,
-                      clipBehavior: Clip.none),
                 ),
-              )
+              ),
             ],
           ),
         ),
