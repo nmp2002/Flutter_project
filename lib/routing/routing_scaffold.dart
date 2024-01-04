@@ -14,6 +14,7 @@ class _RoutingScaffoldState extends State<RoutingScaffold> {
   int _selectedIndex = 0;
   final List _navbarIcons = [
     Icons.home_outlined,
+    Icons.account_circle,
     Icons.search,
     Icons.location_on,
     Icons.settings_outlined
