@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bookingapp/widgets/featured_item.dart';
 import 'package:bookingapp/widgets/recommended_item.dart';
 import 'package:carousel_slider/carousel_slider.dart';
