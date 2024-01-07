@@ -1,4 +1,5 @@
 import 'package:bookingapp/widgets/app_text_field.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -13,72 +14,88 @@ class SignUpPage extends StatelessWidget {
     var phoneController = TextEditingController();
     return Scaffold(
         backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            //logo
-            Container(
-              height: 300,
-              child: Center(
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 100,
-                  backgroundImage: AssetImage("assets/image/logo_page1.png"),
-                ),
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 10,
               ),
-            ),
-            //email
-            AppTextField(
-                textController: emailController,
-                hintText: "Email",
-                icon: Icons.email),
-            SizedBox(
-              height: 20,
-            ),
-            //password
-            AppTextField(
-                textController: passwordController,
-                hintText: "Password",
-                icon: Icons.password),
-            SizedBox(
-              height: 20,
-            ),
-            //name
-            AppTextField(
-                textController: nameController,
-                hintText: "Name",
-                icon: Icons.person),
-            SizedBox(
-              height: 20,
-            ),
-            //phone number
-            AppTextField(
-                textController: phoneController,
-                hintText: "Phone number",
-                icon: Icons.phone),
-            SizedBox(
-              height: 20 + 20,
-            ),
-
-            Container(
-              width: 240,
-              height: 60,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.blueGrey),
-              child: Center(
-                child: Text(
-                  "Sign up",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
+              //logo
+              Container(
+                height: 300,
+                child: Center(
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 100,
+                    backgroundImage: AssetImage("assets/image/logo_page1.png"),
                   ),
                 ),
               ),
-            )
-          ],
+              //email
+              AppTextField(
+                  textController: emailController,
+                  hintText: "Email",
+                  icon: Icons.email),
+              SizedBox(
+                height: 20,
+              ),
+              //password
+              AppTextField(
+                  textController: passwordController,
+                  hintText: "Password",
+                  icon: Icons.password),
+              SizedBox(
+                height: 20,
+              ),
+              //name
+              AppTextField(
+                  textController: nameController,
+                  hintText: "Name",
+                  icon: Icons.person),
+              SizedBox(
+                height: 20,
+              ),
+              //phone number
+              AppTextField(
+                  textController: phoneController,
+                  hintText: "Phone number",
+                  icon: Icons.phone),
+              SizedBox(
+                height: 20 + 20,
+              ),
+
+              Container(
+                width: 200,
+                height: 60,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    color: Colors.blueGrey),
+                child: Center(
+                  child: Text(
+                    "Sign up",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+
+              SizedBox(
+                height: 10,
+              ),
+              RichText(
+                  text: TextSpan(
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => GestureTapCallback,
+                      text: "Have an account already?",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 20,
+                      )))
+            ],
+          ),
         ));
   }
 }
