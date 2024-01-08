@@ -3,8 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class SignInPage extends StatelessWidget {
+  const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,6 @@ class SignUpPage extends StatelessWidget {
                 height: 20 + 20,
               ),
 
-              //sign up button
               Container(
                 width: 200,
                 height: 60,
@@ -76,8 +75,7 @@ class SignUpPage extends StatelessWidget {
                   child: Text(
                     "Sign up",
                     style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w300,
                       color: Colors.white,
                     ),
                   ),

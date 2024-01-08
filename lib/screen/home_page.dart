@@ -8,14 +8,14 @@ import 'package:flutter/widgets.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
   final List locations = [
-    "Phnom Penh",
-    "Siem Reap",
-    "Sihanoukville",
-    "Battambang",
-    "Mondulkiri",
-    "Kampot",
-    "Pursat",
-    "Steung Treng"
+    "Sofitel Legend Metropole",
+    "Movenpick",
+    "Melia",
+    "The Oriental Jade",
+    "Hilton Hà Nội Opera",
+    "Sheraton Hà Nội",
+    "Elegant Suites Westlake",
+    "Pan Pacific"
   ];
 
   List roomItems = [
@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
                     width: 4,
                   ),
                   Text(
-                    "Phnom Penh",
+                    "Hà Nội",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Colors.grey[800],
@@ -122,13 +122,13 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Find and Book",
+                "Tìm và đặt",
                 style: TextStyle(
                     color: Colors.grey.shade500, fontWeight: FontWeight.w500),
               ),
               const Text(
-                "The Best Hotel Rooms",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                "Những phòng khách sạn tốt nhất",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 8),
@@ -165,7 +165,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const Text(
-                "Featured",
+                "Đặc sắc",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
               ),
               Container(
@@ -193,12 +193,12 @@ class HomePage extends StatelessWidget {
               Row(
                 children: [
                   const Text(
-                    "Recommended",
+                    "Đề xuất cho bạn",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                   ),
                   const Spacer(),
                   Text(
-                    "See all",
+                    "Xem tất cả",
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Colors.grey.shade600),
