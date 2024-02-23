@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'detail.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -215,17 +216,39 @@ class HomePage extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   physics: const ClampingScrollPhysics(),
                   children: roomItems
-                      .map((e) => Container(
-                          margin: e != locations[locations.length - 1]
-                              ? const EdgeInsets.only(right: 12)
-                              : const EdgeInsets.only(right: 0),
-                          child: RecommendedItem(
-                            title: e["title"],
-                            type: e["type"],
-                            price: e["price"],
-                            rate: e["rate"],
-                            imageUrl: e["imageUrl"],
-                          )))
+                      .map((e) => GestureDetector(
+                            onTap: () {
+                              // Chuyển đổi Map thành đối tượng Room nếu cần
+                              Room room = Room(
+                                title: e["title"],
+                                type: e["type"],
+                                price: e["price"],
+                                rate: e["rate"],
+                                imageUrl: e["imageUrl"],
+                              );
+                              // Điều hướng đến trang detail.dart khi một RecommendedItem được nhấn
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => RoomDetailScreen(
+                                    room: room, // Truyền thông tin phòng
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              margin: e != roomItems.last
+                                  ? const EdgeInsets.only(right: 12)
+                                  : const EdgeInsets.only(right: 0),
+                              child: RecommendedItem(
+                                title: e["title"],
+                                type: e["type"],
+                                price: e["price"],
+                                rate: e["rate"],
+                                imageUrl: e["imageUrl"],
+                              ),
+                            ),
+                          ))
                       .toList(),
                 ),
               ),
