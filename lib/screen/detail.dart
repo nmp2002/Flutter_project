@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
+import 'booking.dart'; // Import booking.dart
+import 'booking.dart';
 
 class RoomDetailScreen extends StatelessWidget {
   final Room room;
@@ -11,6 +13,14 @@ class RoomDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Room Details'),
+        // Add padding for AppBar
+        elevation: 0, // Remove shadow
+        backgroundColor: Colors.white, // White background
+        iconTheme: IconThemeData(
+          color: Colors.black87, // Black icons
+        ),
+        centerTitle: true,
+        // End padding for AppBar
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -23,8 +33,11 @@ class RoomDetailScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _buildDetailRow('Room Name', room.title),
+                  Divider(), // Add divider between details
                   _buildDetailRow('Type', room.type),
+                  Divider(), // Add divider between details
                   _buildDetailRow('Price', '\$${room.price.toString()}'),
+                  Divider(), // Add divider between details
                   _buildDetailRow('Rate', room.rate.toString()),
                   SizedBox(height: 16),
                   Row(
@@ -32,14 +45,23 @@ class RoomDetailScreen extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          // Hành động khi nhấn nút "Book Now"
+                          _showConfirmationDialog(context,
+                              'You are about to book ${room.title}. Please confirm your booking.');
                         },
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromARGB(
+                              255, 237, 233, 235), // Change button color
+                        ),
                         child: Text('Book Now'),
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          // Hành động khi nhấn nút "Call"
+                          _showCallDialog(context, '123456789');
                         },
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromARGB(
+                              255, 237, 233, 235), // Change button color
+                        ),
                         child: Text('Call'),
                       ),
                     ],
@@ -66,7 +88,7 @@ class RoomDetailScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          if (title == 'Rate') // Thêm điều kiện để tạo khung cho phần rate
+          if (title == 'Rate') // Condition to create frame for rate
             Container(
               padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
@@ -90,7 +112,7 @@ class RoomDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-          if (title != 'Rate') // Hiển thị thông tin khác mà không có khung
+          if (title != 'Rate') // Display other info without frame
             Text(
               value,
               style: TextStyle(
@@ -111,6 +133,65 @@ class RoomDetailScreen extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
+    );
+  }
+
+  void _showConfirmationDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmation'),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                // Perform booking action here
+                Navigator.of(context).pop(); // Close the dialog
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BookingScreen(room: room)),
+                );
+              },
+              child: Text('Confirm'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showCallDialog(BuildContext context, String phoneNumber) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Call'),
+          content: Text('Do you want to call $phoneNumber?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Perform call action here
+                Navigator.of(context).pop();
+              },
+              child: Text('Call'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

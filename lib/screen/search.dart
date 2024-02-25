@@ -226,7 +226,7 @@ class HotelCard extends StatelessWidget {
                       "\$$price/night",
                       style: const TextStyle(
                         fontSize: 16,
-                        color: AppColor.blue,
+                        color: Color.fromARGB(255, 245, 129, 218),
                       ),
                     ),
                     Row(
