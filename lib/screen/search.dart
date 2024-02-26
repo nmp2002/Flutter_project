@@ -12,14 +12,14 @@ class AppColor {
   static const Color actionColor = Colors.red; // Change to your desired color
 }
 
-class SettingPage extends StatefulWidget {
-  const SettingPage({Key? key}) : super(key: key);
+class SearchPage extends StatefulWidget {
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
-  _SettingPageState createState() => _SettingPageState();
+  _SearchPageState createState() => _SearchPageState();
 }
 
-class _SettingPageState extends State<SettingPage> {
+class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,9 +54,19 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
       "title": "Classic room",
       "type": "Queen Room",
       "price": 180,
-      "rate": 4.0,
+      "rate": 4.6,
       "reviews": 120,
-      "imageUrl": "https://cdn3.ivivu.com/2014/01/SUPER-DELUXE2.jpg",
+      "imageUrl":
+          "https://noithattrevietnam.com/uploaded/2019/12/3-thiet-ke-phong-ngu-khach-san-mini%20%285%29.jpg",
+    },
+    {
+      "title": "Classic room",
+      "type": "Queen Room",
+      "price": 180,
+      "rate": 4.8,
+      "reviews": 124,
+      "imageUrl":
+          "https://queenannnhatrang.com//uploads/Roooms/slide-cover-premier-double%20(1).jpg",
     },
     // ... (add more room items)
   ];
@@ -81,7 +91,7 @@ class _HotelSearchPageState extends State<HotelSearchPage> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                    "https://www.hoteljob.vn/files/quang-ba-khach-san.jpg"), // Replace with your banner image URL
+                    "https://www.hoteljob.vn/files/quang-ba-khach-san.jpg"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -198,7 +208,7 @@ class HotelCard extends StatelessWidget {
                       },
                       icon: const Icon(
                         Icons.favorite,
-                        color: Colors.red,
+                        color: Color.fromARGB(255, 249, 133, 204),
                       ),
                     ),
                   ],
@@ -216,15 +226,17 @@ class HotelCard extends StatelessWidget {
                       "\$$price/night",
                       style: const TextStyle(
                         fontSize: 16,
-                        color: AppColor.blue,
+                        color: Color.fromARGB(255, 245, 129, 218),
                       ),
                     ),
                     Row(
                       children: [
-                        const Icon(Icons.star, color: AppColor.orange),
+                        const Icon(Icons.star,
+                            color: Color.fromARGB(255, 243, 107, 213)),
                         Text(rate.toString()),
                         const SizedBox(width: 4),
-                        const Icon(Icons.comment, color: AppColor.green),
+                        const Icon(Icons.comment,
+                            color: Color.fromARGB(255, 24, 65, 66)),
                         Text(reviews.toString()),
                       ],
                     ),

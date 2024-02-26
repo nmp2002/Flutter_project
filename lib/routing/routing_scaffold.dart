@@ -2,8 +2,12 @@ import 'package:bookingapp/screen/home_page.dart';
 import 'package:bookingapp/widgets/bottombar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:bookingapp/screen/sign_up_page.dart';
+<<<<<<< HEAD
 import 'package:bookingapp/screen/setting.dart';
 import 'package:bookingapp/screen/account_page.dart';
+=======
+import 'package:bookingapp/screen/search.dart';
+>>>>>>> e01a75edd1c635d91da840718e0228d3d1be574a
 
 class RoutingScaffold extends StatefulWidget {
   const RoutingScaffold({super.key});
@@ -60,12 +64,16 @@ class _RoutingScaffoldState extends State<RoutingScaffold> {
       ),
       body: IndexedStack(
         index: _selectedIndex,
+<<<<<<< HEAD
         children: [
           HomePage(),
           const SignUpPage(),
           const SettingPage(),
           const AccountPage()
         ],
+=======
+        children: [HomePage(), const SignUpPage(), const SearchPage()],
+>>>>>>> e01a75edd1c635d91da840718e0228d3d1be574a
       ),
     );
   }
