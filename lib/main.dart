@@ -1,8 +1,27 @@
+import 'dart:ui';
+
 import 'package:bookingapp/routing/routing_scaffold.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
+  await myErrorsHandler.initialize();
+  FlutterError.onError = (details) {
+    FlutterError.presentError(details);
+    myErrorsHandler.onErrorDetails(details);
+  };
+  PlatformDispatcher.instance.onError = (error, stack) {
+    myErrorsHandler.onError(error, stack);
+    return true;
+  };
   runApp(const MyApp());
+}
+
+mixin myErrorsHandler {
+  static initialize() {}
+
+  static void onErrorDetails(FlutterErrorDetails details) {}
+
+  static void onError(Object error, StackTrace stack) {}
 }
 
 class MyApp extends StatelessWidget {
