@@ -3,6 +3,7 @@ import 'package:bookingapp/widgets/bottombar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:bookingapp/screen/sign_up_page.dart';
 import 'package:bookingapp/screen/setting.dart';
+import 'package:bookingapp/screen/account_page.dart';
 
 class RoutingScaffold extends StatefulWidget {
   const RoutingScaffold({super.key});
@@ -15,10 +16,9 @@ class _RoutingScaffoldState extends State<RoutingScaffold> {
   int _selectedIndex = 0;
   final List _navbarIcons = [
     Icons.home_outlined,
-    Icons.account_circle,
     Icons.search,
     Icons.location_on,
-    Icons.settings_outlined
+    Icons.account_circle
   ];
   void onTap(int index) {
     setState(() {
@@ -60,7 +60,12 @@ class _RoutingScaffoldState extends State<RoutingScaffold> {
       ),
       body: IndexedStack(
         index: _selectedIndex,
-        children: [HomePage(), const SignUpPage(), const SettingPage()],
+        children: [
+          HomePage(),
+          const SignUpPage(),
+          const SettingPage(),
+          const AccountPage()
+        ],
       ),
     );
   }
