@@ -10,5 +10,5 @@ class AppColors {
   static final Color signColor = const Color(0xFFa9a29f);
   static final Color tittleColor = const Color(0xFF5c524f);
   static final Color mainBlackColor = const Color(0xFF332d2b);
-  static final Color yellowColor = Color.fromARGB(255, 252, 206, 114);
+  static final Color iconColor3 = Color.fromARGB(255, 252, 206, 114);
 }

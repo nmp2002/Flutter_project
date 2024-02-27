@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:bookingapp/screen/sign_up_page.dart';
 import 'package:bookingapp/screen/account_page.dart';
 import 'package:bookingapp/screen/search.dart';
+import 'package:bookingapp/screen/sign_in_page.dart';
 
 class RoutingScaffold extends StatefulWidget {
   const RoutingScaffold({super.key});
@@ -64,7 +65,7 @@ class _RoutingScaffoldState extends State<RoutingScaffold> {
           HomePage(),
           const SearchPage(),
           const SignUpPage(),
-          const AccountPage()
+          const SignInPage()
         ],
       ),
     );

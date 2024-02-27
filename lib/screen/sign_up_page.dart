@@ -1,7 +1,9 @@
+import 'package:bookingapp/screen/sign_in_page.dart';
 import 'package:bookingapp/widgets/app_text_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -12,6 +14,8 @@ class SignUpPage extends StatelessWidget {
     var passwordController = TextEditingController();
     var nameController = TextEditingController();
     var phoneController = TextEditingController();
+    var singUpImages = ["gg.png", "fb.png"];
+
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -43,7 +47,7 @@ class SignUpPage extends StatelessWidget {
               //password
               AppTextField(
                   textController: passwordController,
-                  hintText: "Password",
+                  hintText: "Mật khẩu",
                   icon: Icons.password),
               SizedBox(
                 height: 20,
@@ -51,7 +55,7 @@ class SignUpPage extends StatelessWidget {
               //name
               AppTextField(
                   textController: nameController,
-                  hintText: "Name",
+                  hintText: "Tên",
                   icon: Icons.person),
               SizedBox(
                 height: 20,
@@ -59,7 +63,7 @@ class SignUpPage extends StatelessWidget {
               //phone number
               AppTextField(
                   textController: phoneController,
-                  hintText: "Phone number",
+                  hintText: "Số điện thoại",
                   icon: Icons.phone),
               SizedBox(
                 height: 20 + 20,
@@ -74,7 +78,7 @@ class SignUpPage extends StatelessWidget {
                     color: Colors.blueGrey),
                 child: Center(
                   child: Text(
-                    "Sign up",
+                    "Đăng kí",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -90,12 +94,36 @@ class SignUpPage extends StatelessWidget {
               RichText(
                   text: TextSpan(
                       recognizer: TapGestureRecognizer()
-                        ..onTap = () => GestureTapCallback,
-                      text: "Have an account already?",
+                        ..onTap = () => Get.to(SignInPage(),
+                            transition: Transition.downToUp),
+                      text: "Bạn đã có tài khoản rồi?",
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 20,
-                      )))
+                      ))),
+              SizedBox(
+                height: 10,
+              ),
+              // Option
+              RichText(
+                  text: TextSpan(
+                      text: "Đăng kí bằng các phương thức bên dưới",
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12,
+                      ))),
+              Wrap(
+                children: List.generate(
+                    2,
+                    (index) => Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: CircleAvatar(
+                            radius: 30,
+                            backgroundImage: AssetImage(
+                                "assets/image/" + singUpImages[index]),
+                          ),
+                        )),
+              )
             ],
           ),
         ));
