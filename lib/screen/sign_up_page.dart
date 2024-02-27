@@ -91,16 +91,21 @@ class SignUpPage extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              RichText(
-                  text: TextSpan(
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () => Get.to(SignInPage(),
-                            transition: Transition.downToUp),
-                      text: "Bạn đã có tài khoản rồi?",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 20,
-                      ))),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignInPage()),
+                  );
+                },
+                child: Text(
+                  "Bạn đã có tài khoản rồi?",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 20,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 10,
               ),

@@ -2,11 +2,7 @@ import 'package:bookingapp/screen/home_page.dart';
 import 'package:bookingapp/widgets/bottombar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:bookingapp/screen/sign_up_page.dart';
-
 import 'package:bookingapp/screen/account_page.dart';
-
-import 'package:bookingapp/screen/account_page.dart';
-
 import 'package:bookingapp/screen/search.dart';
 import 'package:bookingapp/screen/sign_in_page.dart';
 
@@ -69,12 +65,7 @@ class _RoutingScaffoldState extends State<RoutingScaffold> {
           HomePage(),
           const SearchPage(),
           const SignUpPage(),
-<<<<<<< HEAD
           const SignInPage()
-=======
-          const SearchPage(),
-          const AccountPage()
->>>>>>> 4fb0f384d845cfbb302f0effcdbaa36e3486700e
         ],
       ),
     );

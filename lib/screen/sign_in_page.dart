@@ -105,15 +105,22 @@ class SignInPage extends StatelessWidget {
                   text: TextSpan(
                       text: "Bạn chưa có tài khoản? ",
                       style: TextStyle(color: Colors.grey, fontSize: 18),
-                      children: [
-                    TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () =>
-                              Get.to(SignUpPage(), transition: Transition.fade),
-                        text: "Tạo mới",
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold))
-                  ]))
+                      children: [])),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUpPage()),
+                  );
+                },
+                child: Text(
+                  "Đăng kí mới",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 20,
+                  ),
+                ),
+              ),
             ],
           ),
         ));
