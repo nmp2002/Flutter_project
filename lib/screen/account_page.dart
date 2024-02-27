@@ -1,6 +1,6 @@
 import 'dart:html';
 
-import 'package:bookingapp/screen/setting.dart';
+import 'package:bookingapp/screen/account_page.dart';
 import 'package:bookingapp/widgets/account_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
