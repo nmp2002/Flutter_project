@@ -1,3 +1,7 @@
+import 'dart:html';
+
+import 'package:bookingapp/screen/account_page.dart';
+
 import 'package:bookingapp/widgets/account_widgets.dart';
 import 'package:bookingapp/widgets/app_icon.dart';
 import 'package:bookingapp/widgets/dimensions.dart';
