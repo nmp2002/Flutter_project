@@ -5,6 +5,8 @@ import 'package:bookingapp/screen/sign_up_page.dart';
 
 import 'package:bookingapp/screen/account_page.dart';
 
+import 'package:bookingapp/screen/account_page.dart';
+
 import 'package:bookingapp/screen/search.dart';
 
 class RoutingScaffold extends StatefulWidget {
@@ -64,6 +66,7 @@ class _RoutingScaffoldState extends State<RoutingScaffold> {
         index: _selectedIndex,
         children: [
           HomePage(),
+          const SearchPage(),
           const SignUpPage(),
           const SearchPage(),
           const AccountPage()
