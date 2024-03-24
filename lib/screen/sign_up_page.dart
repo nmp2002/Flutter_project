@@ -99,7 +99,7 @@ class SignUpPage extends StatelessWidget {
                   );
                 },
                 child: Text(
-                  "Bạn đã có tài khoản rồi?",
+                  "Đăng nhập bằng tài khoản đã có",
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
                     fontSize: 20,

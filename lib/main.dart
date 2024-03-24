@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:bookingapp/routing/routing_scaffold.dart';
+import 'package:bookingapp/screen/sign_in_page.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xFFF7F7F7)),
-      home: RoutingScaffold(),
+      home: SignInPage(),
     );
   }
 }

@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../routing/routing_scaffold.dart';
+
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
 
@@ -65,34 +67,30 @@ class SignInPage extends StatelessWidget {
                   icon: Icons.password),
 
               SizedBox(
-                height: 15,
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 150),
-                child: (RichText(
-                    text: TextSpan(
-                        text: "Đăng nhập bằng tài khoản của bạn",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15,
-                        )))),
-              ),
-              SizedBox(
                 height: 50,
               ),
-              Container(
-                width: 200,
-                height: 60,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.blueGrey),
-                child: Center(
-                  child: Text(
-                    "Đăng nhập",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+              GestureDetector(
+                onTap: () {
+                  // Chuyển hướng đến trang routing scaffold
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RoutingScaffold()),
+                  );
+                },
+                child: Container(
+                  width: 200,
+                  height: 60,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.blueGrey),
+                  child: Center(
+                    child: Text(
+                      "Đăng nhập",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

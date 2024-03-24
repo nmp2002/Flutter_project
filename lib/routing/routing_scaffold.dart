@@ -64,8 +64,8 @@ class _RoutingScaffoldState extends State<RoutingScaffold> {
         children: [
           HomePage(),
           const SearchPage(),
-          const SignUpPage(),
-          const SignInPage()
+          const SignInPage(),
+          const AccountPage()
         ],
       ),
     );
