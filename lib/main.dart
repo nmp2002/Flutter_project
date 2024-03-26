@@ -4,7 +4,7 @@ import 'package:bookingapp/screen/sign_in_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-Future<void> main() async {
+void main() async {
   await myErrorsHandler.initialize();
   FlutterError.onError = (details) {
     FlutterError.presentError(details);
@@ -16,7 +16,14 @@ Future<void> main() async {
   };
   // SET UP FIREBASE
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyBQZZPCjWauGnoFlu0r-geepwWN9fboN6Y",
+      appId: "1:597836804895:android:ff723469d32a418216762a",
+      messagingSenderId: "597836804895",
+      projectId: "bookingapp-62c6a",
+    ),
+  );
   runApp(const MyApp());
 }
 
