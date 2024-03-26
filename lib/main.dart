@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:bookingapp/routing/routing_scaffold.dart';
 import 'package:bookingapp/screen/sign_in_page.dart';
 import 'package:flutter/material.dart';

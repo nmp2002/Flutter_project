@@ -1,6 +1,6 @@
+import 'package:bookingapp/mess/show_warning.dart';
 import 'package:bookingapp/screen/sign_in_page.dart';
 import 'package:bookingapp/widgets/app_text_field.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -15,6 +15,30 @@ class SignUpPage extends StatelessWidget {
     var nameController = TextEditingController();
     var phoneController = TextEditingController();
     var singUpImages = ["gg.png", "fb.png"];
+
+    void registration() {
+      String email = emailController.text.trim();
+      String password = passwordController.text.trim();
+      String name = nameController.text.trim();
+      String phone = phoneController.text.trim();
+
+      if (name.isEmpty) {
+        showWarning("Hãy nhập tên của bạn", title: "Tên");
+      } else if (phone.isEmpty) {
+        showWarning("Hãy nhập số điện thoại của bạn", title: "Số điện thoại");
+      } else if (email.isEmpty) {
+        showWarning("Hãy nhập email của bạn", title: "Email");
+      } else if (!GetUtils.isEmail(email)) {
+        showWarning("Không tìm thấy địa chỉ email",
+            title: "Email không hợp lệ");
+      } else if (password.isEmpty) {
+        showWarning("Hãy nhập mật khẩu của bạn", title: "Mật khẩu");
+      } else if (password.length < 6) {
+        showWarning("Mật khẩu không được dưới 6 kí tự", title: "Mật khẩu");
+      } else {
+        showWarning("Đăng kí thành công", title: "Perfect");
+      }
+    }
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -70,19 +94,24 @@ class SignUpPage extends StatelessWidget {
               ),
 
               //sign up button
-              Container(
-                width: 200,
-                height: 60,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Colors.blueGrey),
-                child: Center(
-                  child: Text(
-                    "Đăng kí",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+              GestureDetector(
+                onTap: () {
+                  registration();
+                },
+                child: Container(
+                  width: 200,
+                  height: 60,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.blueGrey),
+                  child: Center(
+                    child: Text(
+                      "Đăng kí",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
