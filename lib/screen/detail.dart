@@ -48,20 +48,20 @@ class RoomDetailScreen extends StatelessWidget {
                           _showConfirmationDialog(context,
                               'You are about to book ${room.title}. Please confirm your booking.');
                         },
-                        style: ElevatedButton.styleFrom(
-                          primary: Color.fromARGB(
-                              255, 237, 233, 235), // Change button color
-                        ),
+                        // style: ElevatedButton.styleFrom(
+                        //   primary: Color.fromARGB(
+                        //       255, 237, 233, 235), // Change button color
+                        // ),
                         child: Text('Book Now'),
                       ),
                       ElevatedButton(
                         onPressed: () {
                           _showCallDialog(context, '123456789');
                         },
-                        style: ElevatedButton.styleFrom(
-                          primary: Color.fromARGB(
-                              255, 237, 233, 235), // Change button color
-                        ),
+                        // style: ElevatedButton.styleFrom(
+                        //   primary: Color.fromARGB(
+                        //       255, 237, 233, 235), // Change button color
+                        // ),
                         child: Text('Call'),
                       ),
                     ],
