@@ -1,4 +1,5 @@
-import 'package:bookingapp/screen/sign_in_page.dart';
+import 'package:bookingapp/screen/user_auth/sign_in_page.dart';
+import 'package:bookingapp/services/firebase_auth_service.dart';
 import 'package:bookingapp/widgets/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -48,6 +49,8 @@ class AccountPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // TODO: Xử lý khi người dùng nhấn đăng xuất
+                  final FirebaseAuthService auth = FirebaseAuthService();
+                  auth.signOut();
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => SignInPage()),

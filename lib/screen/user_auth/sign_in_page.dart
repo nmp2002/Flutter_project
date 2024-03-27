@@ -1,5 +1,8 @@
+import 'package:bookingapp/mess/show_success.dart';
 import 'package:bookingapp/screen/user_auth/sign_up_page.dart';
+import 'package:bookingapp/services/firebase_auth_service.dart';
 import 'package:bookingapp/widgets/app_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,41 +18,58 @@ class SignInPage extends StatelessWidget {
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
 
+    void login() async {
+      String email = emailController.text.trim();
+      String password = passwordController.text.trim();
+
+      final FirebaseAuthService auth = FirebaseAuthService();
+
+      User? user = await auth.signIn(email, password);
+      if (user != null) {
+        showSuccess("Đăng nhập thành công", title: "Perfect");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const RoutingScaffold()),
+        );
+      }
+    }
+
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              SizedBox(
-                height: 10,
+              const SizedBox(
+                height: 40,
               ),
               //logo
               Container(
-                height: 300,
-                child: Center(
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 100,
-                    backgroundImage: AssetImage("assets/image/logo_page1.png"),
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: const Center(
+                  child: SizedBox(
+                    width: 120,
+                    height: 120,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 100,
+                      backgroundImage:
+                          AssetImage("assets/image/logo_page1.png"),
+                    ),
                   ),
                 ),
               ),
 
-              Container(
-                margin: EdgeInsets.only(left: 20),
-                width: double.maxFinite,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Chào mừng trở lại",
-                        style: TextStyle(
-                            fontSize: 35, fontWeight: FontWeight.bold),
-                      )
-                    ]),
+              Text(
+                "BOOKING",
+                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              Text(
+                "Hãy tham gia với chúng tôi",
+                style: TextStyle(fontSize: 16),
+              ),
+
+              const SizedBox(
                 height: 35,
               ),
               //email
@@ -57,25 +77,22 @@ class SignInPage extends StatelessWidget {
                   textController: emailController,
                   hintText: "Email",
                   icon: Icons.email),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               //password
               AppTextField(
                   textController: passwordController,
                   hintText: "Password",
-                  icon: Icons.password),
+                  icon: Icons.password,
+                  isPassword: true),
 
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               GestureDetector(
                 onTap: () {
-                  // Chuyển hướng đến trang routing scaffold
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => RoutingScaffold()),
-                  );
+                  login();
                 },
                 child: Container(
                   width: 200,
@@ -83,7 +100,7 @@ class SignInPage extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       color: Colors.blueGrey),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Đăng nhập",
                       style: TextStyle(
@@ -95,15 +112,14 @@ class SignInPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 50,
-              ),
 
-              RichText(
-                  text: TextSpan(
-                      text: "Bạn chưa có tài khoản? ",
-                      style: TextStyle(color: Colors.grey, fontSize: 18),
-                      children: [])),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "Bạn chưa có tài khoản rồi ?",
+                style: TextStyle(fontSize: 18),
+              ),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -112,9 +128,10 @@ class SignInPage extends StatelessWidget {
                   );
                 },
                 child: Text(
-                  "Đăng kí mới",
+                  "Đăng kí",
                   style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),
+                    color: Color.fromARGB(255, 237, 129, 219),
+                    fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),
                 ),

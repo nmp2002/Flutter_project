@@ -1,10 +1,10 @@
 import 'package:bookingapp/screen/home_page.dart';
 import 'package:bookingapp/widgets/bottombar_item.dart';
 import 'package:flutter/material.dart';
-import 'package:bookingapp/screen/sign_up_page.dart';
+import 'package:bookingapp/screen/user_auth/sign_up_page.dart';
 import 'package:bookingapp/screen/account_page.dart';
 import 'package:bookingapp/screen/search.dart';
-import 'package:bookingapp/screen/sign_in_page.dart';
+import 'package:bookingapp/screen/user_auth/sign_in_page.dart';
 
 class RoutingScaffold extends StatefulWidget {
   const RoutingScaffold({super.key});
@@ -18,7 +18,7 @@ class _RoutingScaffoldState extends State<RoutingScaffold> {
   final List _navbarIcons = [
     Icons.home_outlined,
     Icons.search,
-    Icons.location_on,
+    Icons.list_alt,
     Icons.account_circle
   ];
   void onTap(int index) {
@@ -64,7 +64,7 @@ class _RoutingScaffoldState extends State<RoutingScaffold> {
         children: [
           HomePage(),
           const SearchPage(),
-          const SignInPage(),
+          const Center(child: Text("Đây là trang danh sách đơn đặt phòng")),
           const AccountPage()
         ],
       ),

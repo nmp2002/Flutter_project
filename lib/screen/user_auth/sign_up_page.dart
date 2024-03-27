@@ -1,8 +1,13 @@
+import 'package:bookingapp/mess/show_success.dart';
 import 'package:bookingapp/mess/show_warning.dart';
 import 'package:bookingapp/screen/user_auth/sign_in_page.dart';
+import 'package:bookingapp/services/firebase_auth_service.dart';
 import 'package:bookingapp/widgets/app_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -16,7 +21,7 @@ class SignUpPage extends StatelessWidget {
     var phoneController = TextEditingController();
     var singUpImages = ["gg.png", "fb.png"];
 
-    void registration() {
+    void registration() async {
       String email = emailController.text.trim();
       String password = passwordController.text.trim();
       String name = nameController.text.trim();
@@ -36,7 +41,14 @@ class SignUpPage extends StatelessWidget {
       } else if (password.length < 6) {
         showWarning("Mật khẩu không được dưới 6 kí tự", title: "Mật khẩu");
       } else {
-        showWarning("Đăng kí thành công", title: "Perfect");
+        final FirebaseAuthService auth = FirebaseAuthService();
+
+        User? user = await auth.signUp(email, password);
+        if (user != null) {
+          showSuccess("Đăng kí thành công", title: "Perfect");
+        } else {
+          print("ERROR");
+        }
       }
     }
 
@@ -47,18 +59,26 @@ class SignUpPage extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: 10,
+                height: 40,
               ),
               //logo
               Container(
-                height: 300,
-                child: Center(
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 100,
-                    backgroundImage: AssetImage("assets/image/logo_page1.png"),
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: const Center(
+                  child: SizedBox(
+                    width: 120,
+                    height: 120,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 100,
+                      backgroundImage:
+                          AssetImage("assets/image/logo_page1.png"),
+                    ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               //email
               AppTextField(
@@ -70,9 +90,11 @@ class SignUpPage extends StatelessWidget {
               ),
               //password
               AppTextField(
-                  textController: passwordController,
-                  hintText: "Mật khẩu",
-                  icon: Icons.password),
+                textController: passwordController,
+                hintText: "Mật khẩu",
+                icon: Icons.password,
+                isPassword: true,
+              ),
               SizedBox(
                 height: 20,
               ),
@@ -118,7 +140,11 @@ class SignUpPage extends StatelessWidget {
               ),
 
               SizedBox(
-                height: 10,
+                height: 20,
+              ),
+              Text(
+                "Bạn đã có tài khoản rồi ?",
+                style: TextStyle(fontSize: 18),
               ),
               GestureDetector(
                 onTap: () {
@@ -128,36 +154,14 @@ class SignUpPage extends StatelessWidget {
                   );
                 },
                 child: Text(
-                  "Đăng nhập bằng tài khoản đã có",
+                  "Đăng nhập",
                   style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),
+                    color: Color.fromARGB(255, 237, 129, 219),
+                    fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              // Option
-              RichText(
-                  text: TextSpan(
-                      text: "Đăng kí bằng các phương thức bên dưới",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,
-                      ))),
-              Wrap(
-                children: List.generate(
-                    2,
-                    (index) => Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: CircleAvatar(
-                            radius: 30,
-                            backgroundImage: AssetImage(
-                                "assets/image/" + singUpImages[index]),
-                          ),
-                        )),
-              )
             ],
           ),
         ));

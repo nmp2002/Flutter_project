@@ -1,8 +1,9 @@
 import 'dart:ui';
 import 'package:bookingapp/routing/routing_scaffold.dart';
-import 'package:bookingapp/screen/sign_in_page.dart';
+import 'package:bookingapp/screen/user_auth/sign_in_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() async {
   await myErrorsHandler.initialize();
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xFFF7F7F7)),
       home: SignInPage(),
     );
